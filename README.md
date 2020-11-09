@@ -17,4 +17,4 @@ flask run
 
 ## Docs 
 
-Check `gcp_mysql_setup.md` for some rought (and I mean rough) docs
+Check `gcp_mysql_setup.md` for some rough (and I mean rough) docs
