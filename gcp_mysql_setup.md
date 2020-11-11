@@ -6,11 +6,11 @@ Guide to using cloud SQL with flask
 * Create table 
 * Setup Python to work with the database
 
-## Detailed
+## Details
 
-Create a myswl instance. Set the root password and save it somewhere, you will need it soon!
+Create a mysql instance. Set the root password and save it somewhere, you will need it soon!
 
-Go to connections and add network- add 0.0.0.0/0. This allows all! Big security risk so get SSL.
+Go to connections and add network- add 0.0.0.0/0. This allows all! Big security risk so get SSL certificates- three different files.
 
 To connect to the instance you need four things
 

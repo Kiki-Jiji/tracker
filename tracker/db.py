@@ -48,13 +48,13 @@ def generate_table_users(cursor):
     try:
          cursor.execute("CREATE TABLE user ("
                         "id VARCHAR(255) PRIMARY KEY,"
-                        "name TEXT NOT NULL,"
+                        "name VARCHAR(255) NOT NULL,"
                         "email VARCHAR(255) UNIQUE NOT NULL,"
-                        "profile_pic TEXT NOT NULL )" )
+                        "profile_pic VARCHAR(255) NOT NULL )" )
     except ProgrammingError as e:
         return(e.msg)
 
-def delete_table(table):
+def delete_table(cursor, table):
     cursor.execute(f"DROP TABLE {table}")
 
 def open_connection(config=None):
