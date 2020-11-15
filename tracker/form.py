@@ -17,12 +17,11 @@ bp = Blueprint('form', __name__, url_prefix='/')
 
 @bp.route("/")
 def index():
-
     if not current_user.is_authenticated:
         return render_template("signin.html")
 
     return render_template("index.html")
 
-@bp.route("/test")
-def test():
-    return "sss"
+@bp.route("/form")
+def form():
+    return render_template('form.html')
