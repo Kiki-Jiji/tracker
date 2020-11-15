@@ -25,3 +25,7 @@ def index():
 @bp.route("/form")
 def form():
     return render_template('form.html')
+
+@bp.route("/user")
+def user():
+    return render_template('user.html')
