@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Tracker</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    </head>
+
+    {% block navbar %}
+    
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a href="#" class="navbar-brand">Brand</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a href="#" class="nav-item nav-link active">Home</a>
+                <a href="#" class="nav-item nav-link">Profile</a>
+                <a href="#" class="nav-item nav-link">Messages</a>
+                <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a>
+            </div>
+            <div class="navbar-nav ml-auto">
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('auth.logout') }}" class="nav-item nav-link">Logout</a>
+                {% else %}
+                <a href="{{ url_for('auth.login') }}" class="nav-item nav-link">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+     
+    {% endblock %}
+
+    {% block content %}
+        <div class="container">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-info" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+       
+        </div>
+        {# application content needs to be provided in the app_content block #}
+        {% block app_content %}{% endblock %}
+    {% endblock %}
+
+</html>

@@ -28,10 +28,7 @@ def create_app(test_config=None):
         pass
 
     # a simple page that says hello
-    @app.route("/")
-    def index():
-        return ("working")
-
+    
     @app.route('/hello')
     def hello():
         return 'Hello, World!'
@@ -39,8 +36,9 @@ def create_app(test_config=None):
     from . import db
     db.init_app(app)
 
-    from . import auth
+    from . import auth, form
     app.register_blueprint(auth.bp)
+    app.register_blueprint(form.bp)
 
     return app
 

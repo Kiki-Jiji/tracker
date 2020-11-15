@@ -1,5 +1,3 @@
-import functools
-
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -143,10 +141,10 @@ def callback():
     login_user(user)
 
     # Send user back to homepage
-    return redirect(url_for("auth.index"))
+    return redirect(url_for("form.index"))
 
 @bp.route("/logout")
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("auth.index"))
+    return redirect(url_for("form.index"))

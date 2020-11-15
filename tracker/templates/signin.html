@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="eng">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Tracker</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+
+    </head>
+
+{% block app_content %}
+
+ <div class="container hat">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h1 class="card-title text-center">Tracker</h1>
+            <div class="form-signin">
+
+              <hr class="my-4">
+              <button class="btn btn-lg btn-google btn-block text-uppercase" ><i class="fab fa-google mr-2"></i> 
+                <a href="{{ url_for('auth.login') }}">Sign in with Google</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
