@@ -33,14 +33,15 @@ def create_database():
         return(e)
 
 
-def generate_table_songs(cursor):
+def generate_table_weight(cursor):
     try:
-        cursor.execute("CREATE TABLE songs ("    
-                        "song_id INT NOT NULL AUTO_INCREMENT,"
-                        "title VARCHAR(255),"
-                        "artist VARCHAR(255),"
-                        "genre VARCHAR(255),"
-                        "PRIMARY KEY(song_id) )")
+        cursor.execute("CREATE TABLE weight ("    
+                        "weight_id INT NOT NULL AUTO_INCREMENT,"
+                        "weight FLOAT,"
+                        "date VARCHAR(255),"
+                        "PRIMARY KEY(weight_id),"
+                        "id VARCHAR(255),"
+                        "FOREIGN KEY (id) REFERENCES user(id) )")
     except ProgrammingError as e:
         return(e.msg)
 
@@ -80,12 +81,12 @@ def open_connection(config=None):
 def init_tables():
 
     create_database()
-
+    delete_all_tables()
     errors = []
     conn = open_connection()
     cursor = conn.cursor()
-    errors.append(generate_table_songs(cursor))
     errors.append(generate_table_users(cursor))
+    errors.append(generate_table_weight(cursor))
     cursor.close()
     if errors is not None:
         return errors
@@ -95,26 +96,22 @@ def show_tables():
     conn = open_connection()
     cursor = conn.cursor()
     cursor.execute("SHOW TABLES")
-    for i in cursor:
-        print(i)
+    tables = [table[0] for table in cursor]
     conn.close()
+    return(tables)
 
-def get_songs():
+def delete_all_tables():
     conn = open_connection()
     cursor = conn.cursor()
+    tables = show_tables()
 
-    result = cursor.execute('SELECT * FROM songs;')
-    songs = cursor.fetchall()
+    for table in tables:
+        delete_table(cursor, table)
 
-    got_songs = jsonify(songs)
-
-    conn.close()
-    return got_songs
-
-def add_songs(song):
+def add_weight(weight, date, user_id):
     conn = open_connection()
     cursor = conn.cursor()
-    cursor.execute('INSERT INTO songs (title, artist, genre) VALUES(%s, %s, %s)', (song["title"], song["artist"], song["genre"]))
+    cursor.execute('INSERT INTO weight (weight, date, id) VALUES(%s, %s, %s)', (weight, date, user_id))
     conn.commit()
     conn.close()
 
@@ -127,3 +124,10 @@ def init_db_command():
 
 def init_app(app):
     app.cli.add_command(init_db_command)
+
+
+data = {
+    "weight": 86,
+    "date": "2020-01-04",
+    "id": 106443255120553717039
+}
