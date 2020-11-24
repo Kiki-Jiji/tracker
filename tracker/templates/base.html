@@ -20,6 +20,7 @@
                 <a href="{{ url_for('form.index') }}" class="nav-item nav-link active">Home</a>
                 <a href="{{ url_for('form.form') }}" class="nav-item nav-link">Form</a>
                 <a href="{{ url_for('form.user') }}"" class="nav-item nav-link">User</a>
+                <a href="/dashboard" class="nav-item nav-link">Dashboard</a>
             </div>
             <div class="navbar-nav ml-auto">
                 {% if current_user.is_authenticated %}

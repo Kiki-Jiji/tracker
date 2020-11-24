@@ -40,6 +40,10 @@ def create_app(test_config=None):
     app.register_blueprint(auth.bp)
     app.register_blueprint(form.bp)
 
+    # Import Dash application
+    from .dashboard import init_dashboard
+    app = init_dashboard(app)
+
     return app
 
     
